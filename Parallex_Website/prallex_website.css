@@ -1,0 +1,100 @@
+/* universal selector */
+*{
+    margin:0;
+    padding:0;
+    /* content size is small when set margin and padding */
+    box-sizing:border-box;
+}
+#wrapper{
+    height:100vh;
+    overflow-y:auto;
+    /* stop to move in x-axis */
+    overflow-x:hidden;
+    /* to enable 3d work */
+    perspective:10px;
+    }
+.container{
+    /* to overlap 2 things we use absolute positining it position to its nearest position ansector(if its value is non-static than we use absolute positining)*/
+    position:relative;
+    height:100%;
+    /* to use flex */
+    display:flex;
+    /* to center ADVENTURE */
+    justify-content: center;
+    align-items: center;
+    /* to on 3d changes */
+    transform-style:preserve-3d;
+    /* to position image of overlaped */
+    z-index:-1;
+}
+.background{
+    /* to far background image */
+    transform:translateZ(-40px) scale(5);
+}
+.foreground{
+    /* to far foreground image */
+    transform:translateZ(-20px) scale(3);
+}
+.background,.foreground{
+    /* to ovelap two images */
+    position:absolute;
+    height:100%;
+    width:100%;
+    /* to fit image */
+    object-fit:cover;
+    /* to position image of overlaped */
+    z-index:-1;
+}
+h1{
+    position:absolute;
+    top:5rem;
+    font-size:10rem;
+    color:white;
+    text-shadow:0 0 10px rgba(0,0,0,0.3);
+    letter-spacing:4px;
+}
+section{
+    background-color: rgb(45,45,45);
+    color:white;
+    padding:5rem 0;   
+}
+.secHeading{
+    font-size:5rem;
+    padding:0 10rem;
+}
+.text{
+    font-size:1.5rem;
+    padding:0 10rem;
+    margin:5rem 0;
+}
+.bg{
+    position:relative;
+    width:100%;
+    height:500px;
+    /* to fix image then image is fixed and you can scroll on image*/
+    background-attachment: fixed;
+    /* to fit image */
+    background-size:cover;
+    background-position:center;
+
+}
+.desc{
+    position:absolute;
+    background-color: white;
+    padding:0.5rem 2.5rem;
+    top:50%;
+    left:50%;
+    transform:translateX(-50%) translateY(-50%); 
+    color:black;
+    font-size:3.5rem;
+    font-weight: 600;;
+}
+.bg1{
+    background-image:url(sport-1.jpg);
+}
+.bg2{
+    background-image:url(sport-2.jpg);
+}
+.bg3{
+    background-image:url(sport-3.jpg);
+}
