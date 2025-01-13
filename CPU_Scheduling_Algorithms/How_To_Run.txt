@@ -1,0 +1,2 @@
+g++ -o demo '.\CPU scheduling program in C++.cpp'
+./demo
