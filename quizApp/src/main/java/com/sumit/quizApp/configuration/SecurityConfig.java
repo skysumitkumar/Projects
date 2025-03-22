@@ -20,48 +20,65 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig
+{
 
     private final MyUserDetailsService userDetailsService;
     private final MyAdminDetailsService adminDetailsService;
 
-    public SecurityConfig(MyUserDetailsService userDetailsService, MyAdminDetailsService adminDetailsService) {
-        this.userDetailsService = userDetailsService;
-        this.adminDetailsService = adminDetailsService;
+    public SecurityConfig(MyUserDetailsService userDetailsService,MyAdminDetailsService adminDetailsService)
+    {
+        this.userDetailsService=userDetailsService;
+        this.adminDetailsService=adminDetailsService;
     }
 
+    /*
+    * input <HttpSecurity>
+    * disable csrf
+    * no authentication for user and admin signup
+    * check authentication for user and admin with checking the ROLE_admin or ROLE_user
+    * Enable Basic authentication
+    * make every session as stateless
+     */
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
+    {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/signup").permitAll()
                         .requestMatchers("/user/signup").permitAll()
-                        .requestMatchers("/admin/**").hasRole("admin")  // Admin access
-                        .requestMatchers("/user/**").hasRole("user")    // User access
+                        .requestMatchers("/admin/**").hasRole("admin")
+                        .requestMatchers("/user/**").hasRole("user")
                         .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults())  // Enable basic auth
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .httpBasic(Customizer.withDefaults())
+                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }
 
+    /*
+    * input <AuthenticationConfiguration>
+    * here we authenticate the admin and user
+     */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        DaoAuthenticationProvider userProvider = new DaoAuthenticationProvider();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception
+    {
+        DaoAuthenticationProvider userProvider=new DaoAuthenticationProvider();
         userProvider.setUserDetailsService(userDetailsService);
         userProvider.setPasswordEncoder(passwordEncoder());
 
-        DaoAuthenticationProvider adminProvider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider adminProvider=new DaoAuthenticationProvider();
         adminProvider.setUserDetailsService(adminDetailsService);
         adminProvider.setPasswordEncoder(passwordEncoder());
 
-        return new ProviderManager(List.of(userProvider, adminProvider));
+        return new ProviderManager(List.of(userProvider,adminProvider));
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();  // No encoding (Unsafe for production)
+    public PasswordEncoder passwordEncoder()
+    {
+        return NoOpPasswordEncoder.getInstance();
     }
 }

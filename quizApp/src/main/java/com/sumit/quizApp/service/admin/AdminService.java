@@ -7,6 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/*
+* admin service
+*               addAdmin input <admin>
+ */
 @Service
 public class AdminService {
 
@@ -15,7 +19,14 @@ public class AdminService {
 
     public ResponseEntity<String> addAdmin(Admin admin)
     {
-        adminDao.save(admin);
-        return new ResponseEntity<>("Ok", HttpStatus.OK);
+        try
+        {
+            adminDao.save(admin);
+            return new ResponseEntity<>("Admin Registration Success",HttpStatus.OK);
+        }
+        catch(Exception e)
+        {
+            return new ResponseEntity<>("Fail to register admin please try again",HttpStatus.BAD_REQUEST);
+        }
     }
 }

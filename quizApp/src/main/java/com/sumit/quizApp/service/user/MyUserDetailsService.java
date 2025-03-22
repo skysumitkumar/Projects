@@ -7,18 +7,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
+/*
+ * here we implements the UserDetailsService class
+ *                   loadUserByUsername:-get AdminDetails from database and pass to AdminPrincipal to authenticate it
+ */
 @Service
-public class MyUserDetailsService implements UserDetailsService {
-
+public class MyUserDetailsService implements UserDetailsService
+{
     private final UserDao userDao;
 
-    public MyUserDetailsService(UserDao userDao) {
+    public MyUserDetailsService(UserDao userDao)
+    {
         this.userDao = userDao;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+    {
             User user=userDao.findByUsername(username).orElse(null);
             if(user==null)
             {

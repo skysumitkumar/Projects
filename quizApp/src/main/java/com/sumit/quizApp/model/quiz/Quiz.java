@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Quiz {
-
+public class Quiz
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

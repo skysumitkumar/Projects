@@ -1,6 +1,6 @@
 package com.sumit.quizApp.controller.user;
 
-import com.sumit.quizApp.model.question.QuestionWrapper;
+import com.sumit.quizApp.model.quiz.QuestionWrapper;
 import com.sumit.quizApp.model.quiz.Response;
 import com.sumit.quizApp.model.user.User;
 import com.sumit.quizApp.service.quiz.QuizService;
@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/*
+* User API
+*           Signup           input<User>
+*           quiz/create      input<String,int,String>       http://localhost:8080/quiz/create?category=Java&numQ=5&title=JQuiz
+*           quiz/get/{id}    input<int>                     get quiz for particular id
+*           quiz/submit/{id} input<int,List<Response>>
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -21,27 +28,22 @@ public class UserController {
     @Autowired
     public QuizService quizService;
 
-    @GetMapping("/dashbord")
-    public String greet()
-    {
-        return "Hello user";
-    }
     @PostMapping("signup")
-    public ResponseEntity<String> signup(User user)
+    public ResponseEntity<String> signup(@RequestBody User user)
     {
+
         return userService.save(user);
     }
 
-    //http://localhost:8080/quiz/create?category=Java&numQ=5&title=JQuiz
     @PostMapping("quiz/create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title) {
+    public ResponseEntity<String> createQuiz(@RequestParam String category,@RequestParam int numQ,@RequestParam String title)
+    {
         return quizService.createQuiz(category,numQ,title);
     }
 
-    //previously we set the id when we call the create API
-    //http://localhost:8080/quiz/get/2
     @GetMapping("quiz/get/{id}")
-    public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable int id) {
+    public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable int id)
+    {
         return quizService.getQuizQuestion(id);
     }
 

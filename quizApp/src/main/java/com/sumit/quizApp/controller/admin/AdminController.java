@@ -10,9 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/*
+* Admin API
+*           signup                          input<Admin>
+*           question/addQuestions           input<Question>
+*           question/allQuestions
+*           question/category/{category}    input<String>
+ */
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController
+{
 
     @Autowired
     AdminService adminService;
@@ -20,14 +28,8 @@ public class AdminController {
     @Autowired
     QuestionService questionService;
 
-    @GetMapping("/dashbord")
-    public String greet()
-    {
-        return "Hello admin";
-    }
-
     @PostMapping("signup")
-    public ResponseEntity<String> addAdmin(Admin admin)
+    public ResponseEntity<String> addAdmin(@RequestBody Admin admin)
     {
         return adminService.addAdmin(admin);
     }
@@ -38,7 +40,7 @@ public class AdminController {
         return questionService.addQuestion(question);
     }
 
-    @GetMapping("question/allQuestion")
+    @GetMapping("question/allQuestions")
     public ResponseEntity<List<Question>> getAllQuestions()
     {
         return questionService.getAllQuestions();
