@@ -1,6 +1,6 @@
-package com.sumit.quizApp.repository;
+package com.sumit.quizApp.repository.question;
 
-import com.sumit.quizApp.model.Question;
+import com.sumit.quizApp.model.question.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

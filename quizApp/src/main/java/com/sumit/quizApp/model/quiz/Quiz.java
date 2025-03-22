@@ -1,5 +1,6 @@
-package com.sumit.quizApp.model;
+package com.sumit.quizApp.model.quiz;
 
+import com.sumit.quizApp.model.question.Question;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

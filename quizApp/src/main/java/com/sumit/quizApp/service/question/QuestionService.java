@@ -1,7 +1,7 @@
-package com.sumit.quizApp.service;
+package com.sumit.quizApp.service.question;
 
-import com.sumit.quizApp.model.Question;
-import com.sumit.quizApp.repository.QuestionDao;
+import com.sumit.quizApp.model.question.Question;
+import com.sumit.quizApp.repository.question.QuestionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -35,4 +35,7 @@ public class QuestionService {
         repo.save(question);
         return new ResponseEntity<>("Success",CREATED);
     }
+
+
+
 }

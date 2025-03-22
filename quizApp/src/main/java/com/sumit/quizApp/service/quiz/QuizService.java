@@ -1,14 +1,13 @@
-package com.sumit.quizApp.service;
+package com.sumit.quizApp.service.quiz;
 
-import com.sumit.quizApp.model.Question;
-import com.sumit.quizApp.model.QuestionWrapper;
-import com.sumit.quizApp.model.Quiz;
-import com.sumit.quizApp.model.Response;
-import com.sumit.quizApp.repository.QuestionDao;
-import com.sumit.quizApp.repository.QuizDao;
+import com.sumit.quizApp.model.question.Question;
+import com.sumit.quizApp.model.question.QuestionWrapper;
+import com.sumit.quizApp.model.quiz.Quiz;
+import com.sumit.quizApp.model.quiz.Response;
+import com.sumit.quizApp.repository.question.QuestionDao;
+import com.sumit.quizApp.repository.quiz.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

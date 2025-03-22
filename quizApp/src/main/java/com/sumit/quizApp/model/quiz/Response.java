@@ -1,4 +1,4 @@
-package com.sumit.quizApp.model;
+package com.sumit.quizApp.model.quiz;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
