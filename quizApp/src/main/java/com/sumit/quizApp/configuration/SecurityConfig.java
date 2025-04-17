@@ -32,8 +32,10 @@ public class SecurityConfig
         this.adminDetailsService=adminDetailsService;
     }
 
+
     /*
     * input <HttpSecurity>
+    * output <SecurityFilterChain>
     * disable csrf
     * no authentication for user and admin signup
     * check authentication for user and admin with checking the ROLE_admin or ROLE_user
@@ -60,6 +62,7 @@ public class SecurityConfig
 
     /*
     * input <AuthenticationConfiguration>
+    * output <AuthenticationManager>
     * here we authenticate the admin and user
      */
     @Bean
